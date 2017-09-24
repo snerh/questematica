@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <script type="text/javascript">
+      function showResult()
+      {
+
+          var cor_answ = document.forms["myform"]["eq"].getAttribute("data-res");
+          var answ = document.forms["myform"]["newinput"].value;
+          if (cor_answ==answ){
+              div1=document.getElementById("list");
+            div1.textContent=document.forms["myform"]["eq"].value + cor_answ + '\r\n' + div1.textContent;
+//              document.getElementById("list").getAttribute("lable") = 
+//                document.forms["myform"]["eq"].value + cor_answ +"\n"+ text;
+            newQuation();
+            }
+            {   
+                document.forms["myform"]["newinput"].value="";
+            }
+         
+      }
+      
+      function newQuation()
+      {
+          var x=~~(Math.random()*7+1);
+          var y=~~(Math.random()*2+1);
+          document.forms["myform"]["newinput"].value="";
+          document.forms["myform"]["eq"].value=+x+"+"+y+"=";
+          document.forms["myform"]["eq"].setAttribute("data-res",x+y);
+      }
+      document.addEventListener('load', newQuation, false);
+   </script>
+</head>
+   <body>
+
+      <form action="javascript:void(0);showResult();" name="myform">
+         <output name="eq" data-res=0 ></output>
+         <input type="text" name="newinput" autocomplete="off"/>
+         <output name="result"></output>
+      </form>
+      <div id="list" style="white-space: pre-line;"></div>
+      <script>
+          newQuation();
+      </script>
+		
+   </body>
+	
+</html>
